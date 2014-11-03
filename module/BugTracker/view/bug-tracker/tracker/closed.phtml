@@ -1,0 +1,18 @@
+<?php
+$title = 'List of closed bugs';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+<ul>
+    <?php
+    foreach($this->posts as $post) {
+        $post=$post->getArrayCopy();
+        print '<li>
+<a href="' . $this->url('bugtracker', array('action'=>'view', 'id' => $post['id'])) . '">' . $post['title'] . '</a>
+[' . date('d.m.Y H:i', $post['created']). '],
+<a href="' . $this->url('bugtracker', array('action'=>'edit', 'id' => $post['id'])) . '">edit</a>,
+<a href="' . $this->url('bugtracker', array('action'=>'delete', 'id' => $post['id'])) . '">delete</a>
+</li>';
+    }
+    ?>
+</ul>
