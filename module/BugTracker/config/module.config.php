@@ -39,6 +39,42 @@ return array(
         ),
     ),
 
+    'service_manager' => array(
+        'factories' => array(
+            'navigation' => 'Zend\Navigation\Service\DefaultNavigationFactory',
+        ),
+    ),
+
+    'navigation' => array(
+        'default' => array(
+            array(
+                'label' => 'Home',
+                'route' => 'home',
+            ),
+            array(
+                'label' => 'Album',
+                'route' => 'bugtracker',
+                'pages' => array(
+                    array(
+                        'label' => 'Add',
+                        'route' => 'bugtracker',
+                        'action' => 'add',
+                    ),
+                    array(
+                        'label' => 'Edit',
+                        'route' => 'bugtracker',
+                        'action' => 'edit',
+                    ),
+                    array(
+                        'label' => 'Delete',
+                        'route' => 'bugtracker',
+                        'action' => 'delete',
+                    ),
+                ),
+            ),
+        ),
+    ),
+
     'view_manager' => array(
         'template_path_stack' => array(
             __DIR__ . '/../view',

@@ -4,10 +4,15 @@ namespace BugTracker\Form;
 use Zend\Form\Form;
 use Zend\InputFilter\Factory as InputFactory;
 use Zend\InputFilter\InputFilter;
+use Zend\Db\Adapter\AdapterInterface;
+use Zend\Db\Adapter\Adapter;
+
 class BugForm extends Form
 {
-    public function __construct($name = null)
+    protected $adapter;
+    public function __construct(AdapterInterface $dbAdapter)
     {
+        $this->adapter =$dbAdapter;
         parent::__construct('bugpost');
         $this->setAttribute('method', 'post');
         $this->setInputFilter(new \BugTracker\Form\BugInputFilter());
@@ -34,6 +39,15 @@ class BugForm extends Form
                 'min' => 3,
                 'max' => 25,
                 'label' => 'Title',
+            ),
+        ));
+
+        $this->add(array(
+            'name' => 'userId',
+            'type' => 'select',
+            'options' => array(
+                'label' => 'Asign to:',
+                'options'=>$this->getOptionsForSelect()
             ),
         ));
         $this->add(array(
@@ -64,5 +78,20 @@ class BugForm extends Form
                 'id' => 'submitbutton',
             ),
         ));
+    }
+
+    public function getOptionsForSelect()
+    {
+        $dbAdapter = $this->adapter;
+        $sql       = 'SELECT id,email  FROM users ORDER BY id ASC';
+        $statement = $dbAdapter->query($sql);
+        $result    = $statement->execute();
+
+        $selectData = array();
+
+        foreach ($result as $res) {
+            $selectData[$res['id']] = $res['email'];
+        }
+        return $selectData;
     }
 }

@@ -73,14 +73,16 @@ class BlogController extends AbstractActionController
 
     public function editAction()
     {
-        // Create form.
+// Create form.
         $form = new \MyBlog\Form\BlogPostForm();
         $form->get('submit')->setValue('Save');
         $request = $this->getRequest();
         if (!$request->isPost()) {
-            // Check if id and blogpost exists.
+// Check if id and blogpost exists.
             $id = (int) $this->params()->fromRoute('id', 0);
-
+            if (!$id) {
+                return $this->redirect()->toRoute('blog');
+            }
             $objectManager = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
             $post = $objectManager
                 ->getRepository('\MyBlog\Entity\BlogPost')
@@ -88,13 +90,13 @@ class BlogController extends AbstractActionController
             if (!$post) {
                 return $this->redirect()->toRoute('blog');
             }
-            // Fill form data.
+// Fill form data.
             $form->bind($post);
             return array('form' => $form);
         }
         else {
             $form->setData($request->getPost());
-            $form->isValid();
+            if ($form->isValid()) {
                 $objectManager = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
                 $data = $form->getData();
                 $id = $data['id'];
@@ -111,9 +113,13 @@ class BlogController extends AbstractActionController
                 $objectManager->flush();
                 $message = 'Blogpost succesfully saved!';
                 $this->flashMessenger()->addMessage($message);
-                // Redirect to list of blogposts
+// Redirect to list of blogposts
                 return $this->redirect()->toRoute('blog');
-
+            }
+            else {
+                $message = 'Error while saving blogpost';
+                $this->flashMessenger()->addErrorMessage($message);
+            }
         }
     }
 
