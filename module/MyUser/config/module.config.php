@@ -16,6 +16,7 @@ return array(
     'zfcuser' => array(
 // telling ZfcUser to use our own class
         'user_entity_class' => 'MyUser\Entity\User',
+        'new_user_default_role' => 'user',
 // telling ZfcUserDoctrineORM to skip the entities it defines
         'enable_default_entities' => false,
     ),
