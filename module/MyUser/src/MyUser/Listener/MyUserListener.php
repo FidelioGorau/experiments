@@ -23,8 +23,7 @@ class MyUserListener extends AbstractListenerAggregate
         $criteria = array('roleId' => $config['zfcuser']['new_user_default_role']);
         $defaultUserRole = $em->getRepository('MyUser\Entity\Role')->findOneBy($criteria);
 
-        if ($defaultUserRole !== null)
-        {
+        if ($defaultUserRole !== null) {
             $user->addRole($defaultUserRole);
         }
     }
