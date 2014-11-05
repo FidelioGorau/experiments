@@ -11,11 +11,6 @@ class TrackerController extends AbstractActionController
     public function indexAction()
     {
         $objectManager = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
-        $auth = $this->getServiceLocator()->get('zfcuser_auth_service');
-        if ($auth->hasIdentity()) {
-            echo $user_edit = $auth->getIdentity()->getId();
-        }
-
         $posts = $objectManager
             ->getRepository('\BugTracker\Entity\BugList')
             ->findBy(array('state' => 1), array('created' => 'DESC'));
@@ -92,8 +87,7 @@ class TrackerController extends AbstractActionController
             // Fill form data.
             $form->bind($post);
             return array('form' => $form);
-        }
-        else {
+        } else {
             $form->setData($request->getPost());
             if($form->isValid()){
                 $objectManager = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
@@ -136,6 +130,10 @@ class TrackerController extends AbstractActionController
         return $view;
     }
 
+    /**
+     *
+     * @return array|\Zend\Http\Response
+     */
     public function deleteAction()
     {
         $id = (int) $this->params()->fromRoute('id', 0);
@@ -152,8 +150,7 @@ class TrackerController extends AbstractActionController
                     $bug = $objectManager->find('\BugTracker\Entity\BugList', $id);
                     $objectManager->remove($bug);
                     $objectManager->flush();
-                }
-                catch (\Exception $ex) {
+                } catch (\Exception $ex) {
                     return $this->redirect()->toRoute('bugtracker', array(
                         'action' => 'index'
                     ));
@@ -172,7 +169,8 @@ class TrackerController extends AbstractActionController
      * @param $state
      * @return ViewModel
      */
-    private function getBugsLists($state){
+    private function getBugsLists($state)
+    {
         $objectManager = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
         $sm = $this->getServiceLocator();
         $auth = $sm->get('zfcuser_auth_service');

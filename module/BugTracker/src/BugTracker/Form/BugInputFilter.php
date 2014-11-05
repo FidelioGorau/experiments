@@ -5,7 +5,8 @@ namespace BugTracker\Form;
 use Zend\Form\Form;
 use Zend\InputFilter\InputFilter;
 
-class BugInputFilter extends InputFilter{
+class BugInputFilter extends InputFilter
+{
     public function __construct()
     {
         $this->add(array(

@@ -48,27 +48,24 @@ return array(
     'navigation' => array(
         'default' => array(
             array(
-                'label' => 'Home',
-                'route' => 'home',
-            ),
-            array(
-                'label' => 'Album',
+                'label' => 'Bugtracker',
                 'route' => 'bugtracker',
                 'pages' => array(
                     array(
-                        'label' => 'Add',
+                        'label' => 'Asigned to me',
                         'route' => 'bugtracker',
-                        'action' => 'add',
+                        'action' => 'active',
+
                     ),
                     array(
-                        'label' => 'Edit',
+                        'label' => 'Resolved',
                         'route' => 'bugtracker',
-                        'action' => 'edit',
+                        'action' => 'resolved',
                     ),
                     array(
-                        'label' => 'Delete',
+                        'label' => 'Closed',
                         'route' => 'bugtracker',
-                        'action' => 'delete',
+                        'action' => 'closed',
                     ),
                 ),
             ),

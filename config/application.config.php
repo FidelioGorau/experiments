@@ -16,7 +16,6 @@ return array(
         'ZfcUser',
         'ZfcUserDoctrineORM',
         'BjyAuthorize',
-        'MyBlog',
         'BugTracker',
         'MyUser'
     ),
