@@ -36,6 +36,16 @@ return array(
                     ),
                 ),
             ),
+            'user' =>array(
+                'type'    => 'segment',
+                'options' => array(
+                    'route'    => '/user[/][:action][/:id]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id'     => '[0-9]+',
+                    ),
+                ),
+            ),
         ),
     ),
 

@@ -7,6 +7,10 @@ use Zend\InputFilter\InputFilter;
 use Zend\Db\Adapter\AdapterInterface;
 use Zend\Db\Adapter\Adapter;
 
+/**
+ * Class BugForm
+ * @package BugTracker\Form
+ */
 class BugForm extends Form
 {
     protected $adapter;
@@ -80,6 +84,11 @@ class BugForm extends Form
         ));
     }
 
+    /**
+     * getOptionsForSelect
+     * Function return list of users
+     * @return array List of users
+     */
     public function getOptionsForSelect()
     {
         $dbAdapter = $this->adapter;

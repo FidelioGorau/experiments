@@ -5,9 +5,18 @@ use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use BugTracker\Entity;
 
+/**
+ * Class TrackerController
+ * @package BugTracker\Controller
+ */
 class TrackerController extends AbstractActionController
 {
 
+    /**
+     * indexAction
+     * Function return list of active bugs.
+     * @return ViewModel
+     */
     public function indexAction()
     {
         $objectManager = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
@@ -21,22 +30,43 @@ class TrackerController extends AbstractActionController
         return $view;
     }
 
+    /**
+     * activeAction
+     * Function returns a list of active bugs assigned to the current user.
+     * @return ViewModel
+     */
     public function activeAction()
     {
         return $this->getBugsLists(1);
     }
 
+    /**
+     * resolvedAction
+     * Function returns a list of resolved bugs assigned to the current user.
+     * @return ViewModel
+     */
     public function resolvedAction()
     {
         return $this->getBugsLists(2);
     }
 
+    /**
+     * closedAction
+     * Function returns a list of closed bugs assigned to the current user.
+     * @return ViewModel
+     */
     public function closedAction()
     {
         return $this->getBugsLists(3);
     }
 
 
+    /**
+     * addAction
+     * Function to create a new bug.
+     * @return array|\Zend\Http\Response
+     * @throws \Zend\Mvc\Exception\DomainException
+     */
     public function addAction()
     {
         $dbAdapter = $this->getServiceLocator()->get('Zend\Db\Adapter\Adapter');
@@ -61,6 +91,14 @@ class TrackerController extends AbstractActionController
         return array('form' => $form);
     }
 
+    /**
+     * editAction
+     * Function for changing bug
+     * @throws \Zend\Mvc\Exception\DomainException
+     * @throws \Zend\Mvc\Exception\RuntimeException
+     * @internal param int $id bug id
+     * @return \Zend\Http\Response
+     */
     public function editAction()
     {
         // Create form.
@@ -103,6 +141,14 @@ class TrackerController extends AbstractActionController
         }
     }
 
+    /**
+     * viewAction
+     * Function view current bug
+     * @throws \Zend\Mvc\Exception\DomainException
+     * @throws \Zend\Mvc\Exception\RuntimeException
+     * @internal param int $id bug id
+     * @return \Zend\Http\Response|ViewModel
+     */
     public function viewAction()
     {
         $id = (int) $this->params()->fromRoute('id', 0);
@@ -125,7 +171,9 @@ class TrackerController extends AbstractActionController
     }
 
     /**
-     *
+     *  deleteAction
+     * Function del. current bug
+     * @internal param int $id bug id
      * @return array|\Zend\Http\Response
      */
     public function deleteAction()
@@ -160,6 +208,8 @@ class TrackerController extends AbstractActionController
 
 
     /**
+     * getBugsLists
+     * Private function returns a list of bugs with selected status
      * @param $state
      * @return ViewModel
      */
