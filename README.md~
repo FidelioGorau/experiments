@@ -7,7 +7,7 @@ Installation
 For install you need:
 
 1. git clone https://github.com/FidelioGorau/experiments.git 
-2. Сonfigure the database connection file: doctrine.global.php
+2. Сonfigure the database connection file doctrine.global.php
 
 3. At the root of the project you need run the command:
 ~~~
