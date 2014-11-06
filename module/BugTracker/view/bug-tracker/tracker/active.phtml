@@ -1,9 +1,10 @@
 <?php
-echo $this->navigation('navigation')->menu()->render();
-$title = 'List of active bugs';
+$title = 'My active bugs';
 $this->headTitle($title);
 ?>
 <h1><?php echo $this->escapeHtml($title); ?></h1>
+<?php echo $this->navigation('navigation')->menu()->render();?>
+<hr/>
 <ul>
     <?php
     foreach($this->posts as $post) {

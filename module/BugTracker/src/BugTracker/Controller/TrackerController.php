@@ -23,18 +23,12 @@ class TrackerController extends AbstractActionController
 
     public function activeAction()
     {
-        $auth = $this->getServiceLocator()->get('zfcuser_auth_service');
-        if ($auth->hasIdentity()) {
-            return $this->getBugsLists(1);
-        }
+        return $this->getBugsLists(1);
     }
 
     public function resolvedAction()
     {
-        $auth = $this->getServiceLocator()->get('zfcuser_auth_service');
-        if ($auth->hasIdentity()) {
-            return $this->getBugsLists(2);
-        }
+        return $this->getBugsLists(2);
     }
 
     public function closedAction()
@@ -174,9 +168,6 @@ class TrackerController extends AbstractActionController
         $objectManager = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
         $sm = $this->getServiceLocator();
         $auth = $sm->get('zfcuser_auth_service');
-        if ($auth->hasIdentity()) {
-            echo $user_edit = $auth->getIdentity()->getId();
-        }
         $objectManager = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
 
         $posts = $objectManager

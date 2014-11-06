@@ -47,15 +47,10 @@ return array(
 
     'navigation' => array(
         'default' => array(
-            array(
-                'label' => 'Bugtracker',
-                'route' => 'bugtracker',
-                'pages' => array(
                     array(
-                        'label' => 'Asigned to me',
+                        'label' => 'Active',
                         'route' => 'bugtracker',
                         'action' => 'active',
-
                     ),
                     array(
                         'label' => 'Resolved',
@@ -66,11 +61,10 @@ return array(
                         'label' => 'Closed',
                         'route' => 'bugtracker',
                         'action' => 'closed',
-                    ),
-                ),
+                    )
+
             ),
         ),
-    ),
 
     'view_manager' => array(
         'template_path_stack' => array(

@@ -40,8 +40,8 @@ return array(
                 ),
                 array(
                     'controller' => 'BugTracker\Controller\BugTracker',
-                    'action' => array('add', 'edit', 'delete'),
-                    'roles' => array('administrator'),
+                    'action' => array('add', 'edit', 'delete','closed','resolved','active'),
+                    'roles' => array('user'),
                 ),
             ),
         ),
