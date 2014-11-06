@@ -11,11 +11,6 @@ return array(
         'ZendDeveloperTools',
         'DoctrineModule',
         'DoctrineORMModule',
-        'ZfcTwig',
-        'ZfcBase',
-        'ZfcUser',
-        'ZfcUserDoctrineORM',
-        'BjyAuthorize',
         'BugTracker',
         'MyUser'
     ),
