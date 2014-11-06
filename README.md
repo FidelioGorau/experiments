@@ -13,7 +13,7 @@ For install you need:
 ~~~
 	./vendor/bin/doctrine-module orm:schema-tool:update --force
 ~~~
-4.Insert in you DB this SQL script:
+4.Insert in your DB this SQL script:
 ~~~
 	 INSERT INTO `role` 
 	    (`id`, `parent_id`, `roleId`) 
