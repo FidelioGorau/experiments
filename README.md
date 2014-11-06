@@ -1,6 +1,6 @@
 Test Bugtracker
 =======================
-Simple bugtracher on ZF2.
+Simple bugtracker on ZF2.
 
 Installation
 ------------
