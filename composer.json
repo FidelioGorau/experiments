@@ -14,7 +14,6 @@
         "bjyoungblood/bjy-profiler": "dev-master",
         "doctrine/common": ">=2.1",
         "doctrine/doctrine-orm-module": "0.8.0",
-        "zf-commons/zfc-twig": "dev-master",
         "zf-commons/zfc-base": "v0.1.2",
         "zf-commons/zfc-user": "1.2.1",
         "zf-commons/zfc-user-doctrine-orm": "dev-master",

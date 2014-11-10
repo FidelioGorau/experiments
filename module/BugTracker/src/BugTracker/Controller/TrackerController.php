@@ -69,14 +69,20 @@ class TrackerController extends AbstractActionController
      */
     public function addAction()
     {
-        $dbAdapter = $this->getServiceLocator()->get('Zend\Db\Adapter\Adapter');
-        $form = new \BugTracker\Form\BugForm($dbAdapter);
+        $objectManager = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
+        $users = $objectManager
+            ->getRepository('\MyUser\Entity\User')->FindAll();
+        $usersList = array();
+        foreach ($users as $user) {
+           echo $user->getId();
+            $usersList[$user->getId()] = $user->getEmail();
+        }
+        $form = new \BugTracker\Form\BugForm($usersList);
         $form->get('submit')->setValue('Add');
         $request = $this->getRequest();
         if ($request->isPost()) {
             $form->setData($request->getPost());
             if ($form->isValid()) {
-                $objectManager = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
                 $bug = new \BugTracker\Entity\BugList();
                 $bug->exchangeArray($form->getData());
                 $bug->setCreated(time());
@@ -101,15 +107,19 @@ class TrackerController extends AbstractActionController
      */
     public function editAction()
     {
-        // Create form.
-        $dbAdapter = $this->getServiceLocator()->get('Zend\Db\Adapter\Adapter');
-        $form = new \BugTracker\Form\BugForm($dbAdapter);
+        $objectManager = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
+        $users = $objectManager
+            ->getRepository('\MyUser\Entity\User')->FindAll();
+        $usersList = array();
+        foreach ($users as $user) {
+            echo $user->getId();
+            $usersList[$user->getId()] = $user->getEmail();
+        }
+        $form = new \BugTracker\Form\BugForm($usersList);
         $form->get('submit')->setValue('Save');
         $request = $this->getRequest();
         if (!$request->isPost()) {
             $id = (int) $this->params()->fromRoute('id', 0);
-
-            $objectManager = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
             $post = $objectManager
                 ->getRepository('\BugTracker\Entity\BugList')
                 ->findOneBy(array('id' => $id));
@@ -215,7 +225,6 @@ class TrackerController extends AbstractActionController
      */
     private function getBugsLists($state)
     {
-        $objectManager = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
         $sm = $this->getServiceLocator();
         $auth = $sm->get('zfcuser_auth_service');
         $objectManager = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');

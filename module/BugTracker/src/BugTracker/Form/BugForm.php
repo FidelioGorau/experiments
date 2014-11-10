@@ -13,10 +13,10 @@ use Zend\Db\Adapter\Adapter;
  */
 class BugForm extends Form
 {
-    protected $adapter;
-    public function __construct(AdapterInterface $dbAdapter)
+    protected $userList;
+    public function __construct(array $users)
     {
-        $this->adapter =$dbAdapter;
+        $this->userList = $users;
         parent::__construct('bugpost');
         $this->setAttribute('method', 'post');
         $this->setInputFilter(new \BugTracker\Form\BugInputFilter());
@@ -51,7 +51,7 @@ class BugForm extends Form
             'type' => 'select',
             'options' => array(
                 'label' => 'Asign to:',
-                'options'=>$this->getOptionsForSelect()
+                'options'=>$this->userList
             ),
         ));
         $this->add(array(
@@ -84,23 +84,4 @@ class BugForm extends Form
         ));
     }
 
-    /**
-     * getOptionsForSelect
-     * Function return list of users
-     * @return array List of users
-     */
-    public function getOptionsForSelect()
-    {
-        $dbAdapter = $this->adapter;
-        $sql       = 'SELECT id,email  FROM users ORDER BY id ASC';
-        $statement = $dbAdapter->query($sql);
-        $result    = $statement->execute();
-
-        $selectData = array();
-
-        foreach ($result as $res) {
-            $selectData[$res['id']] = $res['email'];
-        }
-        return $selectData;
-    }
 }
