@@ -74,7 +74,6 @@ class TrackerController extends AbstractActionController
             ->getRepository('\MyUser\Entity\User')->FindAll();
         $usersList = array();
         foreach ($users as $user) {
-           echo $user->getId();
             $usersList[$user->getId()] = $user->getEmail();
         }
         $form = new \BugTracker\Form\BugForm($usersList);
@@ -112,7 +111,6 @@ class TrackerController extends AbstractActionController
             ->getRepository('\MyUser\Entity\User')->FindAll();
         $usersList = array();
         foreach ($users as $user) {
-            echo $user->getId();
             $usersList[$user->getId()] = $user->getEmail();
         }
         $form = new \BugTracker\Form\BugForm($usersList);

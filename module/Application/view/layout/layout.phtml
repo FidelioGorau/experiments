@@ -39,8 +39,10 @@
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
                         <li><a href="<?php echo $this->url('home') ?>"><?php echo $this->translate('Home') ?></a></li>
-                        <li><a href="<?php echo $this->url('bugtracker',array('action' => 'active')) ?>"><?php echo $this->translate('Asigned to me') ?></a></li>
-                        <li><a href="<?php echo $this->url('bugtracker',array('action' => 'add')) ?>"><?php echo $this->translate('Add new bug') ?></a></li>
+                        <?php if($this->isAllowed('controller/BugTracker\Controller\BugTracker:edit')):?>
+                            <li><a href="<?php echo $this->url('bugtracker',array('action' => 'active')) ?>"><?php echo $this->translate('Asigned to me') ?></a></li>
+                            <li><a href="<?php echo $this->url('bugtracker',array('action' => 'add')) ?>"><?php echo $this->translate('Add new bug') ?></a></li>
+                        <?php endif;?>
                         <li><a href="<?php echo $this->url('user',array('action' => 'login')) ?>"><?php echo $this->translate('Login/Register') ?></a></li>
                     </ul>
                 </div><!--/.nav-collapse -->
