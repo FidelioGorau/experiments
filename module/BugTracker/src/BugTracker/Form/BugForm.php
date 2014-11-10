@@ -14,6 +14,7 @@ use Zend\Db\Adapter\Adapter;
 class BugForm extends Form
 {
     protected $userList;
+
     public function __construct(array $users)
     {
         $this->userList = $users;
@@ -45,7 +46,6 @@ class BugForm extends Form
                 'label' => 'Title',
             ),
         ));
-
         $this->add(array(
             'name' => 'userId',
             'type' => 'select',

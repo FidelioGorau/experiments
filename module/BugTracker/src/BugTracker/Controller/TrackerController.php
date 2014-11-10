@@ -74,13 +74,14 @@ class TrackerController extends AbstractActionController
             ->getRepository('\MyUser\Entity\User')->FindAll();
         $usersList = array();
         foreach ($users as $user) {
-            $usersList[$user->getId()] = $user->getEmail();
+            $usersList[$user->getId()] = $user->getUsername();
         }
         $form = new \BugTracker\Form\BugForm($usersList);
         $form->get('submit')->setValue('Add');
         $request = $this->getRequest();
         if ($request->isPost()) {
             $form->setData($request->getPost());
+
             if ($form->isValid()) {
                 $bug = new \BugTracker\Entity\BugList();
                 $bug->exchangeArray($form->getData());
@@ -111,7 +112,7 @@ class TrackerController extends AbstractActionController
             ->getRepository('\MyUser\Entity\User')->FindAll();
         $usersList = array();
         foreach ($users as $user) {
-            $usersList[$user->getId()] = $user->getEmail();
+            $usersList[$user->getId()] = $user->getUsername();;
         }
         $form = new \BugTracker\Form\BugForm($usersList);
         $form->get('submit')->setValue('Save');
