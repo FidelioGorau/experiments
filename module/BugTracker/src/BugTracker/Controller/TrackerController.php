@@ -76,7 +76,7 @@ class TrackerController extends AbstractActionController
         foreach ($users as $user) {
             $usersList[$user->getId()] = $user->getUsername();
         }
-        $form = new \BugTracker\Form\BugForm($usersList);
+        $form = new \BugTracker\Form\BugAddForm($usersList);
         $form->get('submit')->setValue('Add');
         $request = $this->getRequest();
         if ($request->isPost()) {
@@ -85,6 +85,7 @@ class TrackerController extends AbstractActionController
             if ($form->isValid()) {
                 $bug = new \BugTracker\Entity\BugList();
                 $bug->exchangeArray($form->getData());
+                $bug->setState(1);
                 $bug->setCreated(time());
 
                 $objectManager->persist($bug);

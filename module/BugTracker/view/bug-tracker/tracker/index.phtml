@@ -7,10 +7,8 @@ $this->headTitle($title);
     <?php
     foreach($this->posts as $post) {
         print '<li>
-        <a href="' . $this->url('bugtracker', array('action'=>'view', 'id' => $post->getId())) . '">' . $post->getTitle() . '</a>
-        [' . date('d.m.Y H:i', $post->getCreated()). '],
-        <a href="' . $this->url('bugtracker', array('action'=>'edit', 'id' => $post->getId())) . '">edit</a>,
-        <a href="' . $this->url('bugtracker', array('action'=>'delete', 'id' => $post->getId())) . '">delete</a>
+            <a href="' . $this->url('bugtracker', array('action'=>'view', 'id' => $post->getId())) . '">' . $post->getTitle() . '</a>
+            [' . date('d.m.Y H:i', $post->getCreated()). ']
         </li>';
     }
     ?>
