@@ -8,7 +8,7 @@ return array(
 // using an object repository (entity repository) to load all roles into our ACL
             'BjyAuthorize\Provider\Role\ObjectRepositoryProvider' => array(
                 'object_manager' => 'doctrine.entitymanager.orm_default',
-                'role_entity_class' => 'MyUser\Entity\Role',
+                'role_entity_class' => 'BugTracker\Entity\Role',
             ),
         ),
         'guards' => array(

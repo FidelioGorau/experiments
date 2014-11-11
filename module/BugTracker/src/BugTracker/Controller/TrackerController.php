@@ -71,7 +71,7 @@ class TrackerController extends AbstractActionController
     {
         $objectManager = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
         $users = $objectManager
-            ->getRepository('\MyUser\Entity\User')->FindAll();
+            ->getRepository('\ZfcUser\Entity\User')->FindAll();
         $usersList = array();
         foreach ($users as $user) {
             $usersList[$user->getId()] = $user->getUsername();
@@ -110,7 +110,7 @@ class TrackerController extends AbstractActionController
     {
         $objectManager = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
         $users = $objectManager
-            ->getRepository('\MyUser\Entity\User')->FindAll();
+            ->getRepository('\ZfcUser\Entity\User')->FindAll();
         $usersList = array();
         foreach ($users as $user) {
             $usersList[$user->getId()] = $user->getUsername();;

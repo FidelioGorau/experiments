@@ -5,7 +5,7 @@
  * @link https://github.com/bjyoungblood/BjyAuthorize for the canonical source repository
  * @license http://framework.zend.com/license/new-bsd New BSD License
  */
-namespace MyUser\Entity;
+namespace BugTracker\Entity;
 use BjyAuthorize\Acl\HierarchicalRoleInterface;
 use Doctrine\ORM\Mapping as ORM;
 /**
@@ -32,7 +32,7 @@ class Role implements HierarchicalRoleInterface
     protected $roleId;
     /**
      * @var Role
-     * @ORM\ManyToOne(targetEntity="MyUser\Entity\Role")
+     * @ORM\ManyToOne(targetEntity="BugTracker\Entity\Role")
      */
     protected $parent;
     /**
