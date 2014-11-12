@@ -3,7 +3,7 @@ $title = 'List of active bugs';
 $this->headTitle($title);
 ?>
 <?php if(!$this->zfcUserIdentity()): ?>
-    <div class="alert alert-danger" role="alert">Registration danger!!!</div>
+    <div class="alert alert-danger" role="alert"><strong>Attention:</strong>You are not authorized.</div>
 <?php endif;?>
 <h1><?php echo $this->escapeHtml($title); ?></h1>
 <table class="table">
