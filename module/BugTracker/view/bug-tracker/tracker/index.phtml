@@ -2,14 +2,22 @@
 $title = 'List of active bugs';
 $this->headTitle($title);
 ?>
+<?php if(!$this->zfcUserIdentity()): ?>
+    <div class="alert alert-danger" role="alert">Registration danger!!!</div>
+<?php endif;?>
 <h1><?php echo $this->escapeHtml($title); ?></h1>
-<ul>
+<table class="table">
+    <tr>
+        <th>Title</th>
+        <th>Created</th>
+    </tr>
     <?php
     foreach($this->posts as $post) {
-        print '<li>
-            <a href="' . $this->url('bugtracker', array('action'=>'view', 'id' => $post->getId())) . '">' . $post->getTitle() . '</a>
-            [' . date('d.m.Y H:i', $post->getCreated()). ']
-        </li>';
+
+        print '<tr><td>
+            <a href="' . $this->url('bugtracker', array('action'=>'view', 'id' => $post->getId())) . '">' . $post->getTitle() . '</a></td>
+            <td>' . date('d.m.Y H:i', $post->getCreated()). '</td>
+        </tr>';
     }
     ?>
-</ul>
+</table>

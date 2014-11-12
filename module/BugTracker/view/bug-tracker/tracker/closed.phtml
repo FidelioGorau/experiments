@@ -4,16 +4,22 @@ $this->headTitle($title);
 ?>
 <h1><?php echo $this->escapeHtml($title); ?></h1>
 <?php echo $this->navigation('navigation')->menu()->render();?>
-<hr/>
-<ul>
+<table class="table">
+    <tr>
+        <th>Title</th>
+        <th>Created</th>
+        <th></th>
+    </tr>
     <?php
     foreach($this->posts as $post) {
-        print '<li>
+        print '<tr><td>
         <a href="' . $this->url('bugtracker', array('action'=>'view', 'id' => $post->getId())) . '">' . $post->getTitle() . '</a>
-        [' . date('d.m.Y H:i', $post->getCreated()). '],
-        <a href="' . $this->url('bugtracker', array('action'=>'edit', 'id' => $post->getId())) . '">edit</a>,
-        <a href="' . $this->url('bugtracker', array('action'=>'delete', 'id' => $post->getId())) . '">delete</a>
-        </li>';
+        <td>' . date('d.m.Y H:i', $post->getCreated()). '</td>
+        <td><div class="btn-sm-group" role="group">
+        <a class="btn-sm btn-info" href="' . $this->url('bugtracker', array('action'=>'edit', 'id' => $post->getId())) . '">edit</a>
+        <a class="btn-sm btn-danger" href="' . $this->url('bugtracker', array('action'=>'delete', 'id' => $post->getId())) . '">delete</a>
+        </div></td>
+        </tr>';
     }
     ?>
-</ul>
+</table>
